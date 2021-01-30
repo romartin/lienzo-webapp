@@ -1,0 +1,39 @@
+<!--
+  ~ Copyright 2021 Red Hat, Inc. and/or its affiliates.
+  ~
+  ~ Licensed under the Apache License, Version 2.0 (the "License");
+  ~ you may not use this file except in compliance with the License.
+  ~ You may obtain a copy of the License at
+  ~
+  ~     http://www.apache.org/licenses/LICENSE-2.0
+  ~
+  ~ Unless required by applicable law or agreed to in writing, software
+  ~ distributed under the License is distributed on an "AS IS" BASIS,
+  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  ~ See the License for the specific language governing permissions and
+  ~ limitations under the License.
+  -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="canvasPerfTests.js"></script>
+    <title>Canvas Performance Tests</title>
+</head>
+<body>
+    <div id="mainContainer" style="margin: 10px;">
+        <div id="buttonsContainer" style="margin: 10px; display: inline-grid;">
+            <input type="button" value="Clear" onclick="clearCanvas()" >
+            <input type="button" value="Draw Something" onclick="drawSomething()" >
+            <input type="button" value="Draw Image" onclick="drawImage()" >
+            <input type="button" value="Animate" onclick="runAnimationTest()" >
+            <input type="button" value="Animate Offscreen" onclick="runAnimationOffscreenTest()" >
+        </div>
+        <div id="canvasContainer" style="float: left;">
+            <canvas id="canvas" width="300" height="300" style="border: 1px solid black;"</canvas>
+        </div>
+        <img style="display: none" src="img/standard_model_cup.png">
+    </div>
+</body>
+</html>

@@ -16,6 +16,7 @@ import elemental2.dom.HTMLDivElement;
 import elemental2.dom.HTMLElement;
 import elemental2.dom.HTMLOptionElement;
 import elemental2.dom.HTMLSelectElement;
+import com.ait.lienzo.client.core.types.JsLienzo;
 import org.kie.lienzo.client.util.Console;
 import org.kie.lienzo.client.util.Util;
 
@@ -28,6 +29,8 @@ public abstract class BaseExample implements Example
     protected Layer layer;
 
     protected Console console;
+    protected JsLienzo jsLienzo;
+
 
     protected int width;
     protected int height;
@@ -71,7 +74,17 @@ public abstract class BaseExample implements Example
 
         MousePanMediator pan = new MousePanMediator(EventFilter.META);
         this.panel.getViewport().pushMediator(pan);
+
+        jsLienzo = new JsLienzo();
+        jsLienzo.panel = this.panel;
+        jsLienzo.layer = this.layer;
+        setupJsLienzoTypes(jsLienzo);
     }
+
+    public static native void setupJsLienzoTypes(Object jsLienzo) /*-{
+        $wnd.jsLienzo = jsLienzo;
+    }-*/;
+
 
     @Override public int getWidthOffset()
     {

@@ -121,6 +121,30 @@
 			<version>${junit.version}</version>
 			<scope>test</scope>
 		</dependency>
+		<dependency>
+			<groupId>org.seleniumhq.selenium</groupId>
+			<artifactId>selenium-java</artifactId>
+			<version>3.13.0</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.xmlunit</groupId>
+			<artifactId>xmlunit-core</artifactId>
+			<version>2.6.3</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.xmlunit</groupId>
+			<artifactId>xmlunit-assertj</artifactId>
+			<version>2.6.3</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>io.github.bonigarcia</groupId>
+			<artifactId>webdrivermanager</artifactId>
+			<version>3.8.1</version>
+			<scope>test</scope>
+		</dependency>
 	</dependencies>
 
 	<scm>
@@ -209,42 +233,22 @@
 								</goals>
 							</execution>
 						</executions>
-						<!-- Plugin configuration. There are many available options, see
-              gwt-maven-plugin documentation at codehaus.org -->
 						<configuration>
-							<runTarget>LienzoShowcase.html</runTarget>
-							<modules>
-								<module>org.kie.lienzo.LienzoShowcase</module>
-							</modules>
-						</configuration>
-					</plugin>
-					<plugin>
-						<groupId>org.codehaus.mojo</groupId>
-						<artifactId>gwt-maven-plugin</artifactId>
-						<version>${com.google.gwt.version}</version>
-						<executions>
-							<execution>
-								<goals>
-									<goal>compile</goal>
-								</goals>
-							</execution>
-						</executions>
-						<configuration>
-							<runTarget>LienzoShowcase.html</runTarget>
 							<modules>
 								<module>org.kie.lienzo.LienzoShowcase</module>
 							</modules>
 							<logLevel>INFO</logLevel>
 							<noServer>false</noServer>
-							<extraJvmArgs>-Xmx2048m -XX:CompileThreshold=7000 -Djava.io.tmpdir=${project.build.directory}
-							</extraJvmArgs>
+							<extraJvmArgs>-Xmx2048m -XX:CompileThreshold=7000 -Djava.io.tmpdir=${project.build.directory}</extraJvmArgs>
+							<hostedWebapp>src/main/webapp</hostedWebapp>
+							<runTarget>LienzoShowcase.html</runTarget>
 							<disableCastChecking>true</disableCastChecking>
 							<generateJsInteropExports>true</generateJsInteropExports>
 							<soycDetailed>false</soycDetailed>
-							<hostedWebapp>src/main/webapp</hostedWebapp>
 							<strict>true</strict>
-							<compileReport>true</compileReport>
+							<style>PRETTY</style>
 							<saveSource>true</saveSource>
+							<compileReport>false</compileReport>
 						</configuration>
 					</plugin>
 				</plugins>
