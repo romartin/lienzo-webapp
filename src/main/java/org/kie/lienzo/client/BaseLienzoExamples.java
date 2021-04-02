@@ -5,6 +5,7 @@ import com.ait.lienzo.client.core.shape.Line;
 import com.ait.lienzo.client.widget.panel.IsResizable;
 import com.ait.lienzo.client.widget.panel.LienzoPanel;
 import com.ait.lienzo.client.widget.panel.impl.BoundsProviderFactory;
+import com.ait.lienzo.client.widget.panel.impl.LienzoFixedPanel;
 import com.ait.lienzo.client.widget.panel.impl.ScrollablePanel;
 import com.google.gwt.dom.client.Style.Display;
 import elemental2.dom.Element;
@@ -20,7 +21,8 @@ public class BaseLienzoExamples {
     private Example test;
 
     public void doLoad() {
-        createTests(new BasicExample("Basic"),
+        createTests(new MobileExample("Mobile")
+                    /*new BasicExample("Basic"),
                     new BasicWiresExample("Basic Wires"),
                     new ToolboxExample("Toolbox"),
                     new PerformanceTests("Performance tests"),
@@ -53,7 +55,7 @@ public class BaseLienzoExamples {
                     new Transform3PointsExample("Transform 3Points"),
                     new SpriteExample("Sprite Example"),
                     new ImageStripExample("Image Strip Example"),
-                    new AsteroidsGameExample("Asteroids Game")
+                    new AsteroidsGameExample("Asteroids Game")*/
         );
 
     }
@@ -97,9 +99,9 @@ public class BaseLienzoExamples {
         HTMLDivElement main = (HTMLDivElement) document.getElementById("main");
         main.appendChild(panelDiv);
 
-        // lienzo = LienzoFixedPanel.newPanel(600, 600);
+         lienzo = LienzoFixedPanel.newPanel(600, 600);
         // lienzo = LienzoResizablePanel.newPanel();
-        lienzo = ScrollablePanel.newPanel(new BoundsProviderFactory.PrimitivesBoundsProvider());
+        // lienzo = ScrollablePanel.newPanel(new BoundsProviderFactory.PrimitivesBoundsProvider());
 
         panelDiv.appendChild(lienzo.getElement());
 
