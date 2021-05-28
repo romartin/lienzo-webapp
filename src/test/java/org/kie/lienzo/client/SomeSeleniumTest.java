@@ -1,4 +1,23 @@
-package org.kie.lienzo.client.test;
+/*
+ * Copyright 2021 Red Hat, Inc. and/or its affiliates.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+package org.kie.lienzo.client;
+
+import java.io.File;
+import java.time.Duration;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.junit.Before;
@@ -13,15 +32,12 @@ import org.openqa.selenium.firefox.FirefoxOptions;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-import java.io.File;
-import java.time.Duration;
-
 import static org.junit.Assert.assertEquals;
 
 @SuppressWarnings("NonJREEmulationClassesInClientCode")
 public class SomeSeleniumTest {
 
-    private static final String INDEX_HTML = "target/lienzo-webapp-7.48.0-SNAPSHOT/LienzoShowcase.html";
+    private static final String INDEX_HTML = "target/lienzo-webapp-7.53.0-SNAPSHOT/LienzoShowcase.html";
     private static final String INDEX_HTML_PATH = "file:///" + new File(INDEX_HTML).getAbsolutePath();
     private static final boolean HEADLESS = false;
 
@@ -65,7 +81,7 @@ public class SomeSeleniumTest {
         Actions dragRectangle = new Actions(driver);
         dragRectangle
                 .moveByOffset((int) panelLeft, (int) panelTop)
-                //.moveByOffset((int) x,(int) y)
+                .moveByOffset((int) x,(int) y)
                 .clickAndHold()
                 .moveByOffset(100,100)
                 .release()

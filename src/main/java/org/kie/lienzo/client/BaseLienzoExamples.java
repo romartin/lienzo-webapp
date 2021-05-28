@@ -22,6 +22,7 @@ public class BaseLienzoExamples {
     public void doLoad() {
         tests = new Example[] {
                 new JsLienzoExample("JsLienzo"),
+                new BasicExample("Basic"),
                 new BasicWiresExample("Basic Wires"),
                 new ToolboxExample("Toolbox"),
                 new PerformanceTests("Performance tests"),
