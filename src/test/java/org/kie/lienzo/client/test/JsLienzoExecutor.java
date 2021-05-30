@@ -23,7 +23,6 @@ public class JsLienzoExecutor {
     final JavascriptExecutor executor;
     static final String RETURN = "return ";
     static final String JS_LIENZO = "window.jsLienzo";
-    static final String GET_SHAPE = JS_LIENZO + ".getShape(arguments[0])";
 
     public JsLienzoExecutor(JavascriptExecutor executor) {
         this.executor = executor;
@@ -53,6 +52,10 @@ public class JsLienzoExecutor {
         return this;
     }
 
+    public JsLienzoWiresShapeExecutor forWiresShape(String id) {
+        return new JsLienzoWiresShapeExecutor(this, id);
+    }
+
     public JsLienzoShapeExecutor forShape(String id) {
         return new JsLienzoShapeExecutor(this, id);
     }
@@ -61,6 +64,11 @@ public class JsLienzoExecutor {
         return executor.executeScript(script, args);
     }
 
+    Object executeAsyncScript(String script, Object... args) {
+        return executor.executeAsyncScript(script, args);
+    }
+
+    // TODO: Refactor this by using selenium until conditions
     public static void sleep(long millis) {
         try {
             Thread.sleep(millis);

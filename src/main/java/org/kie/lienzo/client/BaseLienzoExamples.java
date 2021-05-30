@@ -101,14 +101,19 @@ public class BaseLienzoExamples {
             this.test.destroy();
             this.test = null;
         }
+        if (null != panelDiv) {
+            panelDiv.remove();
+            panelDiv = null;
+        }
 
         panelDiv = (HTMLDivElement) document.createElement("div");
         panelDiv.style.display = "inline-block";
         HTMLDivElement main = (HTMLDivElement) document.getElementById("main");
         main.appendChild(panelDiv);
 
-        lienzo = LienzoFixedPanel.newPanel(600, 600);
+        lienzo = LienzoFixedPanel.newPanel(1200, 600);
         // lienzo = LienzoResizablePanel.newPanel();
+        // TODO: JsLienzo events not working when using scrollablepanel
         // lienzo = ScrollablePanel.newPanel(new BoundsProviderFactory.PrimitivesBoundsProvider());
 
         panelDiv.appendChild(lienzo.getElement());

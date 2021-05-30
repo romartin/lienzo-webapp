@@ -39,8 +39,8 @@ public class BasicExampleTest {
 
     @Before
     public void openWebapp() {
-        lienzoDriver = JsLienzoDriver.build();
-        // lienzoDriver = JsLienzoDriver.devMode();
+        //lienzoDriver = JsLienzoDriver.build();
+        lienzoDriver = JsLienzoDriver.devMode();
         rectangle = lienzoDriver.forShape(RECTANGLE);
         lienzoDriver.openTest(1);
     }
@@ -52,29 +52,29 @@ public class BasicExampleTest {
 
     @Test
     public void testMoveShape() {
-        assertEquals(100, rectangle.getX());
-        assertEquals(100, rectangle.getY());
+        assertEquals(100, rectangle.getX(), 0);
+        assertEquals(100, rectangle.getY(), 0);
         rectangle.move( 300, 298);
-        assertEquals(300, rectangle.getX());
-        assertEquals(298, rectangle.getY());
+        assertEquals(300, rectangle.getX(), 0);
+        assertEquals(298, rectangle.getY(), 0);
     }
 
     @Test
     public void testClickShape() {
-        assertEquals(100, rectangle.getWidth());
-        assertEquals(100, rectangle.getHeight());
+        assertEquals(100, rectangle.getWidth(), 0);
+        assertEquals(100, rectangle.getHeight(), 0);
         rectangle.click();
-        assertEquals(200, rectangle.getWidth());
-        assertEquals(200, rectangle.getHeight());
+        assertEquals(200, rectangle.getWidth(), 0);
+        assertEquals(200, rectangle.getHeight(), 0);
     }
 
     @Test
     public void testDoubleClickShape() {
-        assertEquals(100, rectangle.getWidth());
-        assertEquals(100, rectangle.getHeight());
+        assertEquals(100, rectangle.getWidth(), 0);
+        assertEquals(100, rectangle.getHeight(), 0);
         rectangle.doubleClick();
-        assertEquals(50, rectangle.getWidth());
-        assertEquals(50, rectangle.getHeight());
+        assertEquals(50, rectangle.getWidth(), 0);
+        assertEquals(50, rectangle.getHeight(), 0);
     }
 
     @Test

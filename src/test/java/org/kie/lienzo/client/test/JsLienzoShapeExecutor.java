@@ -16,11 +16,12 @@
 
 package org.kie.lienzo.client.test;
 
-import static org.kie.lienzo.client.test.JsLienzoExecutor.GET_SHAPE;
 import static org.kie.lienzo.client.test.JsLienzoExecutor.JS_LIENZO;
 import static org.kie.lienzo.client.test.JsLienzoExecutor.RETURN;
 
 public class JsLienzoShapeExecutor {
+
+    static final String GET_SHAPE = JS_LIENZO + ".getShape(arguments[0])";
 
     private final JsLienzoExecutor executor;
     private final String id;
@@ -32,19 +33,23 @@ public class JsLienzoShapeExecutor {
 
     // ************* PROPERTIES ****************************
 
-    public long getX() {
+    public String getID() {
+        return id;
+    }
+
+    public double getX() {
         return getX(id);
     }
 
-    public long getY() {
+    public double getY() {
         return getY(id);
     }
 
-    public long getWidth() {
+    public double getWidth() {
         return getWidth(id);
     }
 
-    public long getHeight() {
+    public double getHeight() {
         return getHeight(id);
     }
 
@@ -74,26 +79,30 @@ public class JsLienzoShapeExecutor {
         out(id);
     }
 
+    public void drag(double tx, double ty) {
+        drag(id, tx, ty);
+    }
+
     public void move(double tx, double ty) {
         move(id, tx, ty);
     }
 
     // ************* GENERIC ****************************
 
-    private long getX(String id) {
-        return getProperty(id, "x");
+    private double getX(String id) {
+        return getDoubleProperty(id, "x");
     }
 
-    private long getY(String id) {
-       return getProperty(id, "y");
+    private double getY(String id) {
+       return getDoubleProperty(id, "y");
     }
 
-    private long getWidth(String id) {
-        return getProperty(id, "width");
+    private double getWidth(String id) {
+        return getDoubleProperty(id, "width");
     }
 
-    private long getHeight(String id) {
-        return getProperty(id, "height");
+    private double getHeight(String id) {
+        return getDoubleProperty(id, "height");
     }
 
     private String getFillColor(String id) {
@@ -110,6 +119,15 @@ public class JsLienzoShapeExecutor {
         return value;
     }
 
+    @SuppressWarnings("all")
+    private double getDoubleProperty(String id, String property) {
+        Object value = executor.executeScript(RETURN + GET_SHAPE + "." + property, id);
+        if (value instanceof Long) {
+            return ((Long) value).doubleValue();
+        }
+        return (double) value;
+    }
+
     private void click(String id) {
         executor.executeScript(JS_LIENZO + ".click(" + GET_SHAPE + ")", id);
     }
@@ -124,6 +142,12 @@ public class JsLienzoShapeExecutor {
 
     private void out(String id) {
         executor.executeScript(JS_LIENZO + ".out(" + GET_SHAPE + ")", id);
+    }
+
+    private void drag(String id, double tx, double ty) {
+        executor.executeAsyncScript(JS_LIENZO + ".drag(" + GET_SHAPE + ", arguments[1], arguments[2], arguments[3])",
+                               id,
+                               tx, ty);
     }
 
     private void move(String id, double tx, double ty) {
