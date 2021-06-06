@@ -33,6 +33,7 @@ public class JsLienzoDriver extends JsLienzoExecutor {
     private static final boolean HEADLESS = false;
 
     private final WebDriver driver;
+    // TODO: Refactor/remove use of loadTimeMillis by using selenium until conditions
     private long loadTimeMillis = 1000;
 
     public static void init() {
@@ -72,7 +73,7 @@ public class JsLienzoDriver extends JsLienzoExecutor {
 
     public void closeTest() {
         sleep(1000);
-        driver.close();
+        // driver.close();
     }
 
     private WebDriverWait waitOperation(long seconds) {

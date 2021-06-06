@@ -40,8 +40,8 @@ public class JsLienzoExecutor {
         return this;
     }
 
-    public JsLienzoExecutor drag(double sx, double sy, double tx, double ty) {
-        executor.executeScript(JS_LIENZO + ".drag(arguments[0], arguments[1], arguments[2], arguments[3])",
+    public JsLienzoExecutor startDrag(double sx, double sy, double tx, double ty, int timeout) {
+        executor.executeAsyncScript(JS_LIENZO + ".startDrag(arguments[0], arguments[1], arguments[2], arguments[3], arguments[4], arguments[5])",
                                sx, sy,
                                ty, ty);
         return this;

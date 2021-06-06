@@ -23,8 +23,8 @@ public class JsLienzoShapeExecutor {
 
     static final String GET_SHAPE = JS_LIENZO + ".getShape(arguments[0])";
 
-    private final JsLienzoExecutor executor;
-    private final String id;
+    protected final JsLienzoExecutor executor;
+    protected final String id;
 
     public JsLienzoShapeExecutor(JsLienzoExecutor executor, String id) {
         this.executor = executor;
@@ -90,42 +90,27 @@ public class JsLienzoShapeExecutor {
     // ************* GENERIC ****************************
 
     private double getX(String id) {
-        return getDoubleProperty(id, "x");
+        return getShapeDoubleProperty(id, "x");
     }
 
     private double getY(String id) {
-       return getDoubleProperty(id, "y");
+       return getShapeDoubleProperty(id, "y");
     }
 
     private double getWidth(String id) {
-        return getDoubleProperty(id, "width");
+        return getShapeDoubleProperty(id, "width");
     }
 
     private double getHeight(String id) {
-        return getDoubleProperty(id, "height");
+        return getShapeDoubleProperty(id, "height");
     }
 
     private String getFillColor(String id) {
-        return getProperty(id, "fillColor");
+        return getShapeProperty(id, "fillColor");
     }
 
     private String getStrokeColor(String id) {
-        return getProperty(id, "strokeColor");
-    }
-
-    @SuppressWarnings("all")
-    private <T> T getProperty(String id, String property) {
-        T value = (T) executor.executeScript(RETURN + GET_SHAPE + "." + property, id);
-        return value;
-    }
-
-    @SuppressWarnings("all")
-    private double getDoubleProperty(String id, String property) {
-        Object value = executor.executeScript(RETURN + GET_SHAPE + "." + property, id);
-        if (value instanceof Long) {
-            return ((Long) value).doubleValue();
-        }
-        return (double) value;
+        return getShapeProperty(id, "strokeColor");
     }
 
     private void click(String id) {
@@ -155,4 +140,28 @@ public class JsLienzoShapeExecutor {
                                id,
                                tx, ty);
     }
+
+    <T> T getShapeProperty(String id, String property) {
+        return getProperty(GET_SHAPE, id, property);
+    }
+
+    double getShapeDoubleProperty(String id, String property) {
+        return getDoubleProperty(GET_SHAPE, id, property);
+    }
+
+    @SuppressWarnings("all")
+    <T> T getProperty(String method, String id, String property) {
+        T value = (T) executor.executeScript(RETURN + method + "." + property, id);
+        return value;
+    }
+
+    @SuppressWarnings("all")
+    double getDoubleProperty(String method, String id, String property) {
+        Object value = executor.executeScript(RETURN + method + "." + property, id);
+        if (value instanceof Long) {
+            return ((Long) value).doubleValue();
+        }
+        return (double) value;
+    }
+
 }
