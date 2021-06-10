@@ -20,7 +20,7 @@
 		<com.google.jsinterop.annotations.version>2.0.0</com.google.jsinterop.annotations.version>
 		<com.google.elemental2.version>1.1.0</com.google.elemental2.version>
 		<com.google.gwt.version>2.9.0</com.google.gwt.version>
-		<junit.version>4.12</junit.version>
+		<junit.version>4.13.1</junit.version>
 		<maven.clean.plugin.version>2.4.1</maven.clean.plugin.version>
 		<org.kie.lienzo.version>${project.version}</org.kie.lienzo.version>
 	</properties>
